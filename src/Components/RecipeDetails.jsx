@@ -29,7 +29,7 @@ const RecipeDetails = () => {
         }
 
         try {
-            const response = await fetch(`https://recipe-react-a10.onrender.com/addRecipe/${recipe._id}/like`, {
+            const response = await fetch(`https://recipe-react-black.vercel.app/addRecipe/${recipe._id}/like`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: saveUser.uid }),
