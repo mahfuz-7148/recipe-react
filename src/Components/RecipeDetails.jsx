@@ -29,7 +29,7 @@ const RecipeDetails = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/addRecipe/${recipe._id}/like`, {
+            const response = await fetch(`https://recipe-server-ptjv.onrender.com/addRecipe/${recipe._id}/like`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: saveUser.uid }),

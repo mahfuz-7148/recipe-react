@@ -23,7 +23,7 @@ const Home = () => {
 
             try {
                 const response = await fetch(
-                    `http://localhost:3000/addRecipe?search=${encodeURIComponent(searchQuery)}`
+                    `https://recipe-server-ptjv.onrender.com/addRecipe?search=${encodeURIComponent(searchQuery)}`
                 );
                 const searchResults = await response.json();
                 setFilteredRecipes(searchResults.slice(0, 6));
