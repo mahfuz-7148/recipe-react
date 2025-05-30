@@ -21,7 +21,7 @@ const MyRecipes = () => {
         if (saveUser) {
             const fetchUserRecipes = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3000/addRecipe?userId=${saveUser.uid}`);
+                    const response = await fetch(`https://a-10-recipe-react.onrender.com/addRecipe?userId=${saveUser.uid}`);
                     const data = await response.json();
                     setUserRecipes(data);
                 } catch (error) {
@@ -55,7 +55,7 @@ const MyRecipes = () => {
         };
 
         try {
-            const response = await fetch(`http://localhost:3000/addRecipe/${selectedRecipe._id}`, {
+            const response = await fetch(`https://a-10-recipe-react.onrender.com/addRecipe/${selectedRecipe._id}`, {
                 method: 'PUT',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(updatedRecipe),
@@ -79,7 +79,7 @@ const MyRecipes = () => {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:3000/addRecipe/${id}`, {
+            const response = await fetch(`https://a-10-recipe-react.onrender.com/addRecipe/${id}`, {
                 method: 'DELETE',
             });
 

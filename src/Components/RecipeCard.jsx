@@ -20,7 +20,7 @@ const RecipeCard = ({ recipeCard }) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/addRecipe/${_id}/like`, {
+            const response = await fetch(`https://a-10-recipe-react.onrender.com/addRecipe/${_id}/like`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: saveUser.uid }),
