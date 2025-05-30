@@ -32,7 +32,12 @@ const PrivateRoute = ({children}) => {
         )
     }
 
-    return saveUser ? children : <Navigate to='/login'/>
+    if (! saveUser) {
+        return <Navigate to='/login'/>
+    }
+
+
+    return children
 
 
 

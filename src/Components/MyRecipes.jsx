@@ -12,10 +12,6 @@ const MyRecipes = () => {
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [userRecipes, setUserRecipes] = useState(recipes);
 
-    if (!saveUser?.email) {
-        navigate('/login');
-        toast.warn('Please log in to view your recipes.', { autoClose: 2000 });
-    }
 
     useEffect(() => {
         if (saveUser) {

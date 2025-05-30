@@ -9,10 +9,6 @@ const RecipeDetails = () => {
     const [likeCount, setLikeCount] = useState(recipe.likes || 0);
     const navigate = useNavigate();
 
-    if (!saveUser?.email) {
-        navigate('/login');
-        toast.warn('Please log in to view recipe details.', { autoClose: 2000 });
-    }
 
     const formatCategories = (categories) =>
         Array.isArray(categories) ? categories.join(', ') : categories || 'None';

@@ -7,10 +7,6 @@ const AddRecipe = () => {
     const { saveUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    if (!saveUser?.email) {
-        navigate('/login');
-        toast.warn('Please log in to add a recipe.', { autoClose: 2000 });
-    }
 
     const addRecipesForm = async (e) => {
         e.preventDefault();
@@ -31,10 +27,6 @@ const AddRecipe = () => {
             return;
         }
 
-        if (!saveUser) {
-            toast.error('Please log in to add a recipe.', { autoClose: 2000 });
-            return;
-        }
 
         const addRecipe = {
             image,

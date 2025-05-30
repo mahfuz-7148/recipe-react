@@ -8,6 +8,7 @@ import AddRecipe from '../Components/AddRecipe.jsx';
 import MyRecipes from '../Components/MyRecipes.jsx';
 import NotFound from '../Components/NotFound.jsx';
 import RecipeDetails from '../Components/RecipeDetails.jsx';
+import PrivateRoute from './PrivateRoute.jsx';
 
 export const router = createBrowserRouter([
     {
@@ -43,7 +44,9 @@ export const router = createBrowserRouter([
             {
                 path: '/recipe/:id',
                 loader: ({ params }) => fetch(`https://recipe-server-ptjv.onrender.com/addRecipe/${params.id}`),
-                element: <RecipeDetails />,
+                element: <PrivateRoute>
+                    <RecipeDetails />
+                </PrivateRoute>
             },
             {
                 path: '/login',
