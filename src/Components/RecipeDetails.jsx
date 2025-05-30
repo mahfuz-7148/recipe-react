@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from 'react-router'; // Updated import
+import { useLoaderData, useNavigate } from 'react-router';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../Contexts/Authprovider.jsx';
 import { toast } from 'react-toastify';
@@ -7,24 +7,29 @@ const RecipeDetails = () => {
     const recipe = useLoaderData();
     const { saveUser } = useContext(AuthContext);
     const [likeCount, setLikeCount] = useState(recipe.likes || 0);
-    const navigate = useNavigate(); // Added for Back button
+    const navigate = useNavigate();
+
+    if (!saveUser?.email) {
+        navigate('/login');
+        toast.warn('Please log in to view recipe details.', { autoClose: 2000 });
+    }
 
     const formatCategories = (categories) =>
         Array.isArray(categories) ? categories.join(', ') : categories || 'None';
 
     const handleLike = async () => {
         if (!saveUser) {
-            toast.error('Please log in to like this recipe.');
+            toast.error('Please log in to like this recipe.', { autoClose: 2000 });
             return;
         }
 
         if (saveUser.uid === recipe.userId) {
-            toast.error('You cannot like your own recipe.');
+            toast.error('You cannot like your own recipe.', { autoClose: 2000 });
             return;
         }
 
         try {
-            const response = await fetch(`https://b11-a11-recipe-book-server.vercel.app/addRecipe/${recipe._id}/like`, {
+            const response = await fetch(`http://localhost:3000/addRecipe/${recipe._id}/like`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: saveUser.uid }),
@@ -33,13 +38,13 @@ const RecipeDetails = () => {
             const data = await response.json();
 
             if (response.ok) {
-                setLikeCount(data.likes); // Update UI with backend response
-                toast.success('Recipe liked!');
+                setLikeCount(data.likes);
+                toast.success('Recipe liked!', { autoClose: 2000 });
             } else {
-                toast.error(data.error || 'Failed to like recipe.');
+                toast.error(data.error || 'Failed to like recipe.', { autoClose: 2000 });
             }
         } catch (error) {
-            toast.error('Error: ' + error.message);
+            toast.error(`Error: ${error.message}`, { autoClose: 2000 });
         }
     };
 

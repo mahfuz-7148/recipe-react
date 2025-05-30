@@ -12,15 +12,20 @@ const MyRecipes = () => {
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [userRecipes, setUserRecipes] = useState(recipes);
 
+    if (!saveUser?.email) {
+        navigate('/login');
+        toast.warn('Please log in to view your recipes.', { autoClose: 2000 });
+    }
+
     useEffect(() => {
         if (saveUser) {
             const fetchUserRecipes = async () => {
                 try {
-                    const response = await fetch(`https://b11-a11-recipe-book-server.vercel.app/addRecipe?userId=${saveUser.uid}`);
+                    const response = await fetch(`http://localhost:3000/addRecipe?userId=${saveUser.uid}`);
                     const data = await response.json();
                     setUserRecipes(data);
                 } catch (error) {
-                    toast.error('Error fetching recipes: ' + error.message);
+                    toast.error(`Error fetching recipes: ${error.message}`, { autoClose: 2000 });
                 }
             };
             fetchUserRecipes();
@@ -50,14 +55,14 @@ const MyRecipes = () => {
         };
 
         try {
-            const response = await fetch(`https://b11-a11-recipe-book-server.vercel.app/addRecipe/${selectedRecipe._id}`, {
+            const response = await fetch(`http://localhost:3000/addRecipe/${selectedRecipe._id}`, {
                 method: 'PUT',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(updatedRecipe),
             });
 
             if (response.ok) {
-                toast.success('Recipe updated successfully!');
+                toast.success('Recipe updated successfully!', { autoClose: 2000 });
                 setUserRecipes((prev) =>
                     prev.map((recipe) =>
                         recipe._id === selectedRecipe._id ? { ...recipe, ...updatedRecipe } : recipe
@@ -65,27 +70,27 @@ const MyRecipes = () => {
                 );
                 setIsModalOpen(false);
             } else {
-                toast.error('Failed to update recipe.');
+                toast.error('Failed to update recipe.', { autoClose: 2000 });
             }
         } catch (error) {
-            toast.error('Error: ' + error.message);
+            toast.error(`Error: ${error.message}`, { autoClose: 2000 });
         }
     };
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`https://b11-a11-recipe-book-server.vercel.app/addRecipe/${id}`, {
+            const response = await fetch(`http://localhost:3000/addRecipe/${id}`, {
                 method: 'DELETE',
             });
 
             if (response.ok) {
-                toast.success('Recipe deleted successfully!');
+                toast.success('Recipe deleted successfully!', { autoClose: 2000 });
                 setUserRecipes((prev) => prev.filter((recipe) => recipe._id !== id));
             } else {
-                toast.error('Failed to delete recipe.');
+                toast.error('Failed to delete recipe.', { autoClose: 2000 });
             }
         } catch (error) {
-            toast.error('Error: ' + error.message);
+            toast.error(`Error: ${error.message}`, { autoClose: 2000 });
         }
     };
 

@@ -7,6 +7,11 @@ const AddRecipe = () => {
     const { saveUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    if (!saveUser?.email) {
+        navigate('/login');
+        toast.warn('Please log in to add a recipe.', { autoClose: 2000 });
+    }
+
     const addRecipesForm = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -22,12 +27,12 @@ const AddRecipe = () => {
             .map((input) => input.value);
 
         if (!title || !ingredients || !instructions || !cuisine || !prepTime) {
-            toast.error('Please fill in all required fields.');
+            toast.error('Please fill in all required fields.', { autoClose: 2000 });
             return;
         }
 
         if (!saveUser) {
-            toast.error('Please log in to add a recipe.');
+            toast.error('Please log in to add a recipe.', { autoClose: 2000 });
             return;
         }
 
@@ -45,19 +50,19 @@ const AddRecipe = () => {
         };
 
         try {
-            const response = await fetch('https://b11-a11-recipe-book-server.vercel.app/addRecipe', {
+            const response = await fetch('http://localhost:3000/addRecipe', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(addRecipe),
             });
             if (response.ok) {
-                toast.success('Recipe added successfully!');
-                navigate('/myRecipes');
+                toast.success('Recipe added successfully!', { autoClose: 2000 });
+                navigate('/recipes');
             } else {
-                toast.error('Failed to add recipe.');
+                toast.error('Failed to add recipe.', { autoClose: 2000 });
             }
         } catch (error) {
-            toast.error('Error: ' + error.message);
+            toast.error(`Error: ${error.message}`, { autoClose: 2000 });
         }
     };
 

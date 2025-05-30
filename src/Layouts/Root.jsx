@@ -10,8 +10,10 @@ const Root = () => {
     const { theme } = useContext(ThemeContext);
     return (
 
-            <div className=" bg-gray-200 dark:bg-gray-800 w-full h-screen" data-theme={theme || 'light'}>
-                <Navbar />
+            <div className="bg-gray-300 dark:bg-gray-800 w-full min-h-screen" data-theme={theme || 'light'}>
+                <nav className='sticky top-0 z-50'>
+                    <Navbar />
+                </nav>
 
                     <Outlet />
 

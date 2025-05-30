@@ -28,12 +28,13 @@ const PrivateRoute = ({children}) => {
                     Loading
                 </button>
 
-
             </div>
         )
     }
 
     return saveUser ? children : <Navigate to='/login'/>
+
+
 
 };
 
