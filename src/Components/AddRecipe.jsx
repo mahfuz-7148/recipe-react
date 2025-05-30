@@ -50,7 +50,7 @@ const AddRecipe = () => {
         };
 
         try {
-            const response = await fetch('https://a-10-recipe-react.onrender.com/addRecipe', {
+            const response = await fetch('https://recipe-react-a10.onrender.com/addRecipe', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(addRecipe),

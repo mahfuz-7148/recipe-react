@@ -23,7 +23,7 @@ const Home = () => {
 
             try {
                 const response = await fetch(
-                    `https://a-10-recipe-react.onrender.com/addRecipe?search=${encodeURIComponent(searchQuery)}`
+                    `https://recipe-react-a10.onrender.com/addRecipe?search=${encodeURIComponent(searchQuery)}`
                 );
                 const searchResults = await response.json();
                 setFilteredRecipes(searchResults.slice(0, 6));
