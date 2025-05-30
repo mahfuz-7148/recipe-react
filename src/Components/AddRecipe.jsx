@@ -50,7 +50,7 @@ const AddRecipe = () => {
         };
 
         try {
-            const response = await fetch('https://recipe-react-black.vercel.app/addRecipe', {
+            const response = await fetch('http://localhost:3000/addRecipe', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(addRecipe),

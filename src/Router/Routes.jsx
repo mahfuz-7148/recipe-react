@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch('https://recipe-react-black.vercel.app/addRecipe?sort=-likes&limit=6'),
+                loader: () => fetch('http://localhost:3000/addRecipe?sort=-likes&limit=6'),
                 Component: Home,
             },
             {
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
                 loader: ({ request }) => {
                     const url = new URL(request.url);
                     const cuisine = url.searchParams.get('cuisine');
-                    return fetch(`https://recipe-react-black.vercel.app/addRecipe${cuisine ? `?cuisine=${cuisine}` : ''}`);
+                    return fetch(`http://localhost:3000/addRecipe${cuisine ? `?cuisine=${cuisine}` : ''}`);
                 },
                 Component: AllRecipes,
             },
@@ -36,13 +36,13 @@ export const router = createBrowserRouter([
                 path: '/myRecipes',
                 loader: async () => {
                     const userId = 'current_user_id'; // Replace with saveUser.uid from AuthContext (requires context in loader)
-                    return fetch(`https://recipe-react-black.vercel.app/addRecipe?userId=${userId}`);
+                    return fetch(`http://localhost:3000/addRecipe?userId=${userId}`);
                 },
                 element: <MyRecipes />,
             },
             {
                 path: '/recipe/:id',
-                loader: ({ params }) => fetch(`https://recipe-react-black.vercel.app/addRecipe/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:3000/addRecipe/${params.id}`),
                 element: <RecipeDetails />,
             },
             {
