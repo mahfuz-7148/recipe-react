@@ -42,7 +42,7 @@ const AddRecipe = () => {
         };
 
         try {
-            const response = await fetch('https://recipe-server-ptjv.onrender.com/addRecipe', {
+            const response = await fetch('https://b11-a11-recipe-book-server.vercel.app/addRecipe', {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(addRecipe),

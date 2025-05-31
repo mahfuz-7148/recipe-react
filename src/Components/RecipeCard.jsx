@@ -20,7 +20,7 @@ const RecipeCard = ({ recipeCard }) => {
         }
 
         try {
-            const response = await fetch(`https://recipe-server-ptjv.onrender.com/addRecipe/${_id}/like`, {
+            const response = await fetch(`https://b11-a11-recipe-book-server.vercel.app/addRecipe/${_id}/like`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId: saveUser.uid }),
