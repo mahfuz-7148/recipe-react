@@ -2,6 +2,8 @@
 
 A dynamic, user-friendly web application for food enthusiasts to manage, discover, and share recipes, built with React, Firebase, and MongoDB.
 
+![App Screenshot](https://i.postimg.cc/5N2HWwLW/recipe.png)
+
 - **Live Website**: https://recipe-react-pi.vercel.app/
 
 ## Main Technologies
